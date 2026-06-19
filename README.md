@@ -1,38 +1,26 @@
-<<<<<<< HEAD
-# StartupSphereAI
-StartupSphereAI is a full-stack startup intelligence platform that tracks Indian startups with over $20M funding. It provides startup discovery, funding analytics, sector-wise insights, AI-based growth predictions, startup comparisons, watchlists, and market intelligence dashboards.
-=======
 # StartupSphere AI
 
-A full-stack startup intelligence platform built using:
-
-## Tech Stack
-
-- Next.js
-- TypeScript
-- Spring Boot
-- PostgreSQL
-- Maven
+AI-powered startup analytics platform.
 
 ## Features
 
-- Startup Directory
-- Search Functionality
-- Industry Filters
-- Country Filters
-- Company Detail Pages
-- Analytics Dashboard (Coming Soon)
+- Startup listings
+- Search startups
+- Industry filter
+- Country filter
+- Company details page
+- Spring Boot REST API
+- PostgreSQL database
 
-## Setup
+## Tech Stack
 
-### Backend
+Frontend:
+- Next.js
+- TypeScript
 
-cd backend
-mvn spring-boot:run
+Backend:
+- Spring Boot
+- Java
 
-### Frontend
-
-cd frontend
-npm install
-npm run dev
-
+Database:
+- PostgreSQL
