@@ -35,6 +35,15 @@ public class Company {
 
     private Double funding;
 
+    private Integer foundedYear;
+
+    private Integer employees;
+
+    private String headquarters;
+
+    private String logoUrl;
+private Integer aiScore;
+    private String fundingStage;
     @Column(length = 5000)
     private String description;
 }

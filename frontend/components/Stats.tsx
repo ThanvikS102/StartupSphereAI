@@ -1,32 +1,53 @@
-export default function Stats() {
+interface Props {
+  companies?: any[];
+}
+
+export default function Stats({ companies = [] }: Props) {
+  const totalFunding = companies.reduce(
+    (sum, company) => sum + Number(company.funding || 0),
+    0
+  );
+
+  const totalStartups = companies.length;
+
+  const totalIndustries = new Set(
+    companies.map((c) => c.industry)
+  ).size;
+
+  const totalCountries = new Set(
+    companies.map((c) => c.country)
+  ).size;
+
   return (
-    <section
+    <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "60px",
-        marginBottom: "50px",
+        display: "grid",
+        gridTemplateColumns: "repeat(4,1fr)",
+        gap: "20px",
+        padding: "40px 20px",
       }}
     >
       <div>
-        <h2>6+</h2>
+        <h2>{totalStartups}+</h2>
         <p>Startups</p>
       </div>
 
       <div>
-        <h2>4+</h2>
+        <h2>{totalIndustries}+</h2>
         <p>Industries</p>
       </div>
 
       <div>
-        <h2>2+</h2>
+        <h2>{totalCountries}+</h2>
         <p>Countries</p>
       </div>
 
       <div>
-        <h2>$44B+</h2>
+        <h2>
+          ${(totalFunding / 1000000000).toFixed(1)}B+
+        </h2>
         <p>Funding</p>
       </div>
-    </section>
+    </div>
   );
 }

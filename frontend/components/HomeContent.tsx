@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import StartupCard from "./StartupCard";
 import IndustryFilter from "./IndustryFilter";
 import CountryFilter from "./CountryFilter";
-
+import Stats from "./Stats";
 export default function HomeContent({ companies }: any) {
   const [searchTerm, setSearchTerm] = useState("");
 

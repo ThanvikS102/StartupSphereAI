@@ -11,3 +11,19 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+.stat-card {
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  background: #111;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.stat-card p {
+  color: #888;
+}

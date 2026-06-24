@@ -5,7 +5,7 @@ interface Props {
   selected: string;
   setSelected: (industry: string) => void;
 }
-
+  
 export default function IndustryFilter({
   industries,
   selected,
