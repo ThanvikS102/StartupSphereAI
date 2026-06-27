@@ -1,8 +1,13 @@
 import Link from "next/link";
+import { calculateAIScore } from "@/utils/aiScore";
 
 export default function StartupCard({
   company,
+  rank,
+
 }: any) {
+  const aiScore = calculateAIScore(company);
+
   return (
     <Link
       href={`/company/${company.id}`}
@@ -25,6 +30,15 @@ export default function StartupCard({
           justifyContent: "space-between",
         }}
       >
+        <div
+  style={{
+    color: "#facc15",
+    fontWeight: "bold",
+    marginBottom: "10px",
+  }}
+>
+  #{rank} Ranked Startup
+</div>
         <div>
           <h3
             style={{

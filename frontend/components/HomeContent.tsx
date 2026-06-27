@@ -6,6 +6,7 @@ import StartupCard from "./StartupCard";
 import IndustryFilter from "./IndustryFilter";
 import CountryFilter from "./CountryFilter";
 import Stats from "./Stats";
+import { rankCompanies } from "@/utils/ranking";
 export default function HomeContent({ companies }: any) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -53,7 +54,7 @@ export default function HomeContent({ companies }: any) {
       );
     }
   );
-
+const rankedCompanies = rankCompanies(filteredCompanies);
   return (
     <>
       <SearchBar
@@ -84,12 +85,15 @@ export default function HomeContent({ companies }: any) {
           marginTop: "20px",
         }}
       >
-        {filteredCompanies.map((company: any) => (
-          <StartupCard
-            key={company.id}
-            company={company}
-          />
-        ))}
+        {rankedCompanies.map(
+  (company: any, index: number) => (
+    <StartupCard
+      key={company.id}
+      company={company}
+      rank={index + 1}
+    />
+  )
+)}
       </div>
     </>
   );

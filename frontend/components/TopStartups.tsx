@@ -49,7 +49,7 @@ export default function TopStartups({
 </Link>
 
             <strong>
-              {company.aiScore}/100
+              {(company.aiScore || 0)}/100
             </strong>
           </div>
         )

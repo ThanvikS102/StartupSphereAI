@@ -1,8 +1,13 @@
 import AnalyticsChart from "../../components/AnalyticsChart";
 import { getCompanies } from "../../services/companyService";
 import CountryChart from "../../components/CountryChart";
+import Card from "@/components/ui/Card";
+import IndustryAnalytics from "../../components/IndustryAnalytics";
+import { getIndustryAnalytics } from "../../services/analyticsService";
 export default async function Analytics() {
   const companies = await getCompanies();
+  const industryAnalytics =
+  await getIndustryAnalytics();
 const countryCounts: Record<
   string,
   number
@@ -175,51 +180,65 @@ const topFunded = [...companies]
   Top Funded Startups
 </h2>
 
-<div
+<Card>
+  <div
+    style={{
+      border: "1px solid #333",
+      borderRadius: "12px",
+      padding: "20px",
+      marginTop: "20px",
+    }}
+  >
+    {topFunded.map(
+      (
+        company: any,
+        index: number
+      ) => (
+        <div
+          key={company.id}
+          style={{
+            display: "flex",
+            justifyContent:
+              "space-between",
+            padding: "12px 0",
+            borderBottom:
+              index !==
+              topFunded.length - 1
+                ? "1px solid #222"
+                : "none",
+          }}
+        >
+          <span>
+            {index + 1}.{" "}
+            {company.name}
+          </span>
+
+          <span>
+            $
+            {(
+              Number(
+                company.funding
+              ) / 1000000000
+            ).toFixed(2)}
+            B
+          </span>
+        </div>
+      )
+    )}
+  </div>
+</Card>
+<h2
   style={{
-    border: "1px solid #333",
-    borderRadius: "12px",
-    padding: "20px",
-    marginTop: "20px",
+    marginTop: "70px",
+    marginBottom: "25px",
   }}
 >
-  {topFunded.map(
-    (
-      company: any,
-      index: number
-    ) => (
-      <div
-        key={company.id}
-        style={{
-          display: "flex",
-          justifyContent:
-            "space-between",
-          padding: "12px 0",
-          borderBottom:
-            index !==
-            topFunded.length - 1
-              ? "1px solid #222"
-              : "none",
-        }}
-      >
-        <span>
-          {index + 1}.{" "}
-          {company.name}
-        </span>
+  Industry Intelligence
+</h2>
 
-        <span>
-          $
-          {(
-            Number(
-              company.funding
-            ) / 1000000000
-          ).toFixed(2)}
-          B
-        </span>
-      </div>
-    )
-  )}
-</div>
+<IndustryAnalytics
+  analytics={industryAnalytics}
+/>
     </main>
   );
 }

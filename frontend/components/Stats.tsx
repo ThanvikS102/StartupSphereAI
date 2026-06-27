@@ -2,9 +2,12 @@ interface Props {
   companies?: any[];
 }
 
-export default function Stats({ companies = [] }: Props) {
+export default function Stats({
+  companies = [],
+}: Props) {
   const totalFunding = companies.reduce(
-    (sum, company) => sum + Number(company.funding || 0),
+    (sum, company) =>
+      sum + Number(company.funding || 0),
     0
   );
 
@@ -18,36 +21,78 @@ export default function Stats({ companies = [] }: Props) {
     companies.map((c) => c.country)
   ).size;
 
+  const stats = [
+    {
+      icon: "🚀",
+      value: totalStartups,
+      label: "Startups",
+    },
+    {
+      icon: "🏭",
+      value: totalIndustries,
+      label: "Industries",
+    },
+    {
+      icon: "🌍",
+      value: totalCountries,
+      label: "Countries",
+    },
+    {
+      icon: "💰",
+      value:
+        "$" +
+        (
+          totalFunding /
+          1000000000
+        ).toFixed(1) +
+        "B",
+      label: "Funding",
+    },
+  ];
+
   return (
-    <div
+    <section
       style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4,1fr)",
-        gap: "20px",
-        padding: "40px 20px",
+        padding: "70px 20px",
       }}
     >
-      <div>
-        <h2>{totalStartups}+</h2>
-        <p>Startups</p>
-      </div>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "38px",
+          marginBottom: "50px",
+        }}
+      >
+        Market Overview
+      </h2>
 
-      <div>
-        <h2>{totalIndustries}+</h2>
-        <p>Industries</p>
-      </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(220px,1fr))",
+          gap: "25px",
+        }}
+      >
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="market-card"
+          >
+            <div
+              style={{
+                fontSize: "40px",
+              }}
+            >
+              {stat.icon}
+            </div>
 
-      <div>
-        <h2>{totalCountries}+</h2>
-        <p>Countries</p>
-      </div>
+            <h1>{stat.value}</h1>
 
-      <div>
-        <h2>
-          ${(totalFunding / 1000000000).toFixed(1)}B+
-        </h2>
-        <p>Funding</p>
+            <p>{stat.label}</p>
+          </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
